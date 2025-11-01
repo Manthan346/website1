@@ -55,29 +55,28 @@ export default function LandingPage() {
           </div>
         </div>
       </nav>
-        <section
-      className="relative flex flex-col lg:flex-row items-center justify-between py-16 sm:py-20 px-5 sm:px-8 lg:px-16 overflow-hidden"
+      <section
       className="relative flex flex-col lg:flex-row items-center justify-between py-16 sm:py-20 px-5 sm:px-8 lg:px-16 overflow-hidden"
       style={{
         backgroundImage: `url('/model.jpeg')`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "right center", // default for desktop
+        backgroundPosition: "right 1%", // default for desktop
       }}
     >
-      {/* Gradient Overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent lg:to-black/20" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-transparent lg:to-black/30" />
 
-      {/* Left Content */}
+      {/* Left Text */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="relative z-10 max-w-xl text-white space-y-6 lg:space-y-8"
+        className="relative z-10 max-w-xl h-100 text-white space-y-8 lg:space-y-8"
       >
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight font-fredoka">
-         <br />
+          
           <span className="text-pink-400">Your Fans, Your Platform</span>
         </h1>
 
@@ -86,7 +85,6 @@ export default function LandingPage() {
           your fans. A safe and modern platform for creators to connect and grow.
         </p>
 
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <Button className="bg-pink-400 text-gray-900 hover:bg-pink-500 font-semibold w-full sm:w-auto">
             Get Started
@@ -100,7 +98,6 @@ export default function LandingPage() {
           </Button>
         </div>
 
-        {/* Highlights */}
         <div className="flex flex-wrap items-center gap-4 sm:gap-8 pt-4 sm:pt-6 text-sm sm:text-base">
           <div className="flex items-center gap-2">
             <span>📸</span> Post content
@@ -114,8 +111,17 @@ export default function LandingPage() {
         </div>
       </motion.div>
 
-      {/* Spacer for layout balance on large screens */}
+      {/* Spacer for layout balance */}
       <div className="hidden lg:block w-1/2" />
+
+      {/* 🔧 Mobile background fix */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          section {
+            background-position: center top; /* centers face on mobile */
+          }
+        }
+      `}</style>
     </section>
 
       {/* Hero Section */}
@@ -124,7 +130,7 @@ export default function LandingPage() {
         whileInView={{ opacity: 1, y: 0 }} // fade in and move up
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: false, amount: 0.2 }}
-        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-white"
+        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8  bg-white"
         style={{ backgroundImage: "linear-gradient(to bottom, #FCE4ED, #FFFFFF)" }}
       >
         <div className="mx-auto max-w-5xl text-center">

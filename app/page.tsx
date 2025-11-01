@@ -2,11 +2,22 @@
 
 import { Button } from "@/components/ui/button"
 import { Check, Star, Users, Zap, DollarSign, Lock } from "lucide-react"
+import { motion } from "motion/react"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import CountUp from "@/components/CountUp"
+import { PlayCircle } from "lucide-react";
+import model from '../public/model.jpeg'
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
+      
       <nav className="fixed top-0 z-50 w-full border-b bg-white/90 backdrop-blur-md" style={{ borderColor: "#F0E6EB" }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -44,9 +55,75 @@ export default function LandingPage() {
           </div>
         </div>
       </nav>
+        <section
+      className="relative flex flex-col lg:flex-row items-center justify-between py-16 sm:py-20 px-5 sm:px-8 lg:px-16 overflow-hidden"
+      className="relative flex flex-col lg:flex-row items-center justify-between py-16 sm:py-20 px-5 sm:px-8 lg:px-16 overflow-hidden"
+      style={{
+        backgroundImage: `url('/model.jpeg')`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "right center", // default for desktop
+      }}
+    >
+      {/* Gradient Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent lg:to-black/20" />
+
+      {/* Left Content */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="relative z-10 max-w-xl text-white space-y-6 lg:space-y-8"
+      >
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight font-fredoka">
+         <br />
+          <span className="text-pink-400">Your Fans, Your Platform</span>
+        </h1>
+
+        <p className="text-gray-200 font-poppins text-sm sm:text-base leading-relaxed">
+          Build your personal brand, post exclusive content, and get paid directly by
+          your fans. A safe and modern platform for creators to connect and grow.
+        </p>
+
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Button className="bg-pink-400 text-gray-900 hover:bg-pink-500 font-semibold w-full sm:w-auto">
+            Get Started
+          </Button>
+          <Button
+            variant="outline"
+            className="bg-white/20 text-white border-white hover:bg-white/30 w-full sm:w-auto"
+          >
+            <PlayCircle className="mr-2 h-5 w-5" />
+            Watch Demo
+          </Button>
+        </div>
+
+        {/* Highlights */}
+        <div className="flex flex-wrap items-center gap-4 sm:gap-8 pt-4 sm:pt-6 text-sm sm:text-base">
+          <div className="flex items-center gap-2">
+            <span>📸</span> Post content
+          </div>
+          <div className="flex items-center gap-2">
+            <span>💰</span> Earn subscriptions
+          </div>
+          <div className="flex items-center gap-2">
+            <span>🤝</span> Engage fans
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Spacer for layout balance on large screens */}
+      <div className="hidden lg:block w-1/2" />
+    </section>
 
       {/* Hero Section */}
-      <section
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
         className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-white"
         style={{ backgroundImage: "linear-gradient(to bottom, #FCE4ED, #FFFFFF)" }}
       >
@@ -105,42 +182,80 @@ export default function LandingPage() {
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Stats Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-y" style={{ borderColor: "#F0E6EB" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-y" style={{ borderColor: "#F0E6EB" }}>
         <div className="mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold mb-2 font-fredoka" style={{ color: "#F07AAE" }}>
-                $2.4M+
+                 <CountUp
+                  from={0}
+                  to={2.4}
+                  separator=","
+                  direction="up"
+                  duration={1}
+                  className="count-up-text"
+                />M+
               </div>
               <p className="text-gray-600 font-poppins">Paid to Creators</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold mb-2 font-fredoka" style={{ color: "#F07AAE" }}>
-                50K+
+                <CountUp
+                  from={0}
+                  to={50}
+                  separator=","
+                  direction="up"
+                  duration={1}
+                  className="count-up-text"
+                />K+
               </div>
               <p className="text-gray-600 font-poppins">Active Creators</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold mb-2 font-fredoka" style={{ color: "#F07AAE" }}>
-                500K+
+                <CountUp
+                  from={0}
+                  to={500}
+                  separator=","
+                  direction="up"
+                  duration={1}
+                  className="count-up-text"
+                />K+
               </div>
               <p className="text-gray-600 font-poppins">Verified Members</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold mb-2 font-fredoka" style={{ color: "#F07AAE" }}>
-                98%
+                 <CountUp
+                  from={0}
+                  to={98}
+                  separator=","
+                  direction="up"
+                  duration={1}
+                  className="count-up-text"
+                />%
               </div>
               <p className="text-gray-600 font-poppins">Satisfaction Rate</p>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#FCE4ED" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
+        id="features" className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#FCE4ED" }}>
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 font-fredoka">Powerful Features</h2>
@@ -176,10 +291,14 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* How It Works */}
-      <section
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
         id="how-it-works"
         className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-y"
         style={{ borderColor: "#F0E6EB" }}
@@ -211,10 +330,15 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Security Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#FCE4ED" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#FCE4ED" }}>
         <div className="mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -239,10 +363,15 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Pricing Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-y" style={{ borderColor: "#F0E6EB" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-y" style={{ borderColor: "#F0E6EB" }}>
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 font-fredoka">Transparent Pricing</h2>
@@ -257,11 +386,11 @@ export default function LandingPage() {
                 style={
                   plan.popular
                     ? {
-                        backgroundColor: "#FCE4ED",
-                        borderColor: "#F07AAE",
-                        boxShadow: "0 15px 40px rgba(240, 122, 174, 0.15)",
-                        transform: "scale(1.05)",
-                      }
+                      backgroundColor: "#FCE4ED",
+                      borderColor: "#F07AAE",
+                      boxShadow: "0 15px 40px rgba(240, 122, 174, 0.15)",
+                      transform: "scale(1.05)",
+                    }
                     : { backgroundColor: "#FFFFFF", borderColor: "#F0E6EB" }
                 }
               >
@@ -315,38 +444,53 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#FCE4ED" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false }}
+        id="faq"
+        className="py-20 px-4 sm:px-6 lg:px-8"
+        style={{ backgroundColor: "#FCE4ED" }}
+      >
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-fredoka">Frequently Asked Questions</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-fredoka">
+              Frequently Asked Questions
+            </h2>
           </div>
 
-          <div className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, idx) => (
-              <div
+              <AccordionItem
                 key={idx}
-                className="p-6 rounded-xl bg-white border transition-all"
+                value={`item-${idx}`}
+                className="border rounded-xl bg-white px-4 sm:px-6 py-2 sm:py-3 transition-all duration-300"
                 style={{ borderColor: "#F0E6EB" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#F07AAE"
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#F0E6EB"
-                }}
               >
-                <h3 className="font-semibold text-lg text-gray-900 mb-2 font-fredoka">{faq.q}</h3>
-                <p className="text-gray-600 font-poppins">{faq.a}</p>
-              </div>
+                <AccordionTrigger
+                  className="font-semibold text-lg text-gray-900 font-fredoka hover:text-[#F07AAE] transition-colors"
+                >
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 font-poppins pt-2">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section
+      <motion.section
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
         className="py-20 px-4 sm:px-6 lg:px-8"
         style={{ background: "linear-gradient(135deg, #F07AAE 0%, #E25092 100%)" }}
       >
@@ -379,10 +523,15 @@ export default function LandingPage() {
             ✓ No credit card required • ✓ 18+ verification included • ✓ Instant activation
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="border-t bg-white" style={{ borderColor: "#F0E6EB" }}>
+      <motion.footer
+        initial={{ opacity: 0, y: 40 }} // start hidden and lower
+        whileInView={{ opacity: 1, y: 0 }} // fade in and move up
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
+        className="border-t bg-white" style={{ borderColor: "#F0E6EB" }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -459,7 +608,7 @@ export default function LandingPage() {
             <p>© 2025 Knkii. All rights reserved. | Empowering creators, one connection at a time.</p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   )
 }
